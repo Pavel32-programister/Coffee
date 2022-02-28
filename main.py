@@ -4,11 +4,14 @@ import sqlite3
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QWidget
 
+from UI.addEditCoffeeForm import Ui_Form
+from UI.main import Ui_MainWindow
 
-class MyWidget(QMainWindow):
+
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         self.form = AddEdit(self)
 
         self.Table.clicked.connect(self.editCoffee)
@@ -16,7 +19,7 @@ class MyWidget(QMainWindow):
         self.upd()
 
     def upd(self):
-        con = sqlite3.connect("coffee.sqlite")
+        con = sqlite3.connect("data/coffee.sqlite")
         cur = con.cursor()
         res = cur.execute("select * from Coffee").fetchall()
         self.Table.setRowCount(len(res))
@@ -43,10 +46,10 @@ class MyWidget(QMainWindow):
         self.form.show()
 
 
-class AddEdit(QWidget):
+class AddEdit(QWidget, Ui_Form):
     def __init__(self, parent):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.parr = parent
         self.Yes.clicked.connect(self.confirm)
         self.No.clicked.connect(self.close)
@@ -69,7 +72,7 @@ class AddEdit(QWidget):
         self.Price.setValue(int(price))
 
     def confirm(self):
-        con = sqlite3.connect("coffee.sqlite")
+        con = sqlite3.connect("data/coffee.sqlite")
         cur = con.cursor()
         if self.type == "add":
             name = self.Name.text()
