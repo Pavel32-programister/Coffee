@@ -11,11 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Самая Лучшая КофейНЯ!</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QTableWidget" name="Table">
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>155</number>
@@ -29,6 +29,11 @@
       <attribute name="verticalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
+      <column>
+       <property name="text">
+        <string>ID</string>
+       </property>
+      </column>
       <column>
        <property name="text">
         <string>Название</string>
@@ -49,6 +54,18 @@
         <string>Цена р.</string>
        </property>
       </column>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="AddCoffee">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Добавить кофе</string>
+      </property>
      </widget>
     </item>
    </layout>
